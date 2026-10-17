@@ -3,203 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RFL⁺</title>
-<link rel="icon" type="image/jpeg" href="img/192x192_Artboard%206.jpg">
-<link rel="apple-touch-icon" href="img/192x192_Artboard%206.jpg">
-<meta name="description" content="Reflectors — a studio for form, light and objects. Concept page.">
+<title>Foianu — Portfolio</title>
+<meta name="description" content="Web projects by Valentina Foianu.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Big+Shoulders+Display:wght@800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f1;
+    --ink: #151515;
+    --mute: #8a8984;
+    --line: rgba(21, 21, 21, .22);
+    --fs-s: 11px;
+    --fs-m: clamp(15px, 1.3vw, 19px);
+    --fs-l: clamp(36px, 5.4vw, 84px);
+    --gutter: clamp(16px, 3.2vw, 48px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--fs-m); line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .cap { font-size: var(--fs-s); text-transform: uppercase; letter-spacing: .02em; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px var(--gutter); }
+  main { padding: 0 var(--gutter) 96px; }
+  h1 { margin: clamp(64px, 10vw, 160px) 0 0; font-weight: 400; font-size: var(--fs-l); line-height: 1.04; letter-spacing: -.02em; }
+  .intro { margin: 24px 0 0; max-width: 38ch; color: var(--mute); }
+
+  /* project list: one row per project */
+  .list { margin: clamp(64px, 10vw, 140px) 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); }
+  .row {
+    display: grid; grid-template-columns: 3ch 160px 1fr auto auto; gap: 24px; align-items: center;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+  }
+  .row img { display: block; width: 160px; aspect-ratio: 3 / 1; object-fit: cover; background: #ddd; }
+  .row h2 { margin: 0; font-weight: 500; font-size: var(--fs-m); }
+  .row p { margin: 2px 0 0; color: var(--mute); font-size: var(--fs-s); }
+  .row a.go { border-bottom: 1px solid currentColor; font-size: var(--fs-s); text-transform: uppercase; }
+  .row a.go:hover { color: #1f3cff; }
+
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 3ch 1fr; row-gap: 10px; }
+    .row img { grid-column: 2; width: 100%; }
+    .row .title { grid-column: 2; }
+    .row a.go { grid-column: 2; justify-self: start; }
+  }
+</style>
 </head>
 <body>
 
-
-<!-- NAV -->
-<header class="nav mono">
-  <a href="#top" class="nav__mark">RFL<sup>+</sup></a>
-  <nav>
-    <a href="#top">(0) Origin</a>
-  </nav>
-  <span class="nav__clock" id="clock">00:00:00</span>
+<header class="cap">
+  <span>Foianu</span>
+  <span>Portfolio</span>
 </header>
 
-<main id="top">
-  <section class="sheet" id="manifesto">
+<main>
+  <h1>Web<br>Projects</h1>
+  <p class="intro">Concept sites and experiments. Each project opens as a live site, with its code on GitHub.</p>
 
-    <!-- lead -->
-    <div class="top">
-    <div class="meta">
-      <span>01.06</span>
-      <span>Reflectors (2026) Surface Study (No. 7)</span>
-    </div>
-    <figure class="lead reveal"><img draggable="false" src="img/Artboard%201.jpg" alt="Five-chamber rear lamp: white, red and amber lenses with a central red reflector"><span class="dim">1269 × 423 px</span></figure>
-
-    <div class="count reveal">
-      <span class="rule"><i class="plus"></i></span>
-      <span class="num" data-count="photos">0</span>
-    </div>
-    </div>
-
-    <!-- chapter 01 -->
-    <div class="intro reveal">
-      <h2 class="intro__title">Light<br>Returned</h2>
-      <div class="intro__text">
-        <p>Reflectors is a quiet studio for objects, images and the spaces between them. We reduce every brief to its essential form — then let the surface do the talking.</p>
-        <p class="cap">No ornament. No noise. Only material, proportion and light.</p>
+  <!-- To add a project: copy one <li> block, change the number, image, name and the two links. -->
+  <ol class="list">
+    <li class="row">
+      <span class="cap">01</span>
+      <img src="https://foianu.github.io/Reflectors/img/Artboard%201.jpg" alt="Reflectors preview">
+      <div class="title">
+        <h2>Reflectors</h2>
+        <p>Catalogue of rear lamps and reflectors, 2026</p>
       </div>
-    </div>
-
-    <article class="block block--corner-l reveal">
-      <span class="corner corner--bl" aria-hidden="true"><i class="plus"></i></span>
-      <div class="block__text text-l">
-        <p class="desc"><b>1 — RFL-01 Lumen</b><span>Red LED rear lamp. Two columns of round lenses, each with its own LED, so the light reads as a row of points rather than a single glow.</span></p>
-        <p class="cap">RFL-01<br>Lumen</p>
-      </div>
-      <figure class="ph ph--full block__img ratio-34"><img draggable="false" src="img/408x543_Artboard%202.jpg" alt="Red LED lamp, rows of round lenses lit from behind"><span class="dim">408 × 543 px</span></figure>
-    </article>
-
-    <article class="block block--img-l reveal">
-      <figure class="ph ph--full block__img ratio-11"><img draggable="false" src="img/408x408_Artboard%203.jpg" alt="Red lamp lit, a row of square LED lenses over a reflector band"><span class="dim">408 × 408 px</span></figure>
-      <div class="block__text text-r">
-        <p class="desc"><b>2 — RFL-08 Signal</b><span>Lit red lamp. A row of square LED lenses sits over a wide reflector band, so it signals when on and still reflects when off.</span></p>
-        <p class="cap">RFL-08<br>Signal</p>
-      </div>
-    </article>
-
-    <div class="table reveal">
-      <table class="contract mono">
-        <caption>Reflector index — chapter 01</caption>
-        <tr><th>Model</th><td>Type</td><td>Colour / Use</td></tr>
-        <tr><th></th><td>Form</td><td>Class</td></tr>
-        <tr class="gap"><th>1 — RFL-01 Lumen</th><td>LED rear lamp, 2 × 3 round lenses, one LED each</td><td>Red — tail &amp; stop</td></tr>
-        <tr><th>2 — RFL-08 Signal</th><td>LED lamp, square lenses over a reflector band</td><td>Red — rear, reflects when off</td></tr>
-      </table>
-    </div>
-
-    <!-- chapter 02 -->
-    <div class="intro reveal">
-      <h2 class="intro__title">Light<br>Returned</h2>
-      <div class="intro__text">
-        <p>Reflectors is a quiet studio for objects, images and the spaces between them. We reduce every brief to its essential form — then let the surface do the talking.</p>
-        <p class="cap">No ornament. No noise. Only material, proportion and light.</p>
-      </div>
-    </div>
-
-    <article class="block block--corner-l block--square reveal">
-      <span class="corner corner--bl" aria-hidden="true"><i class="plus"></i></span>
-      <div class="block__text text-l">
-        <p class="desc"><b>1 — RFL-03 Ember</b><span>Amber LED indicator set beside a red reflector panel. Two LEDs behind a stepped lens spread the flash across the whole chamber.</span></p>
-        <p class="cap">RFL-03<br>Ember</p>
-      </div>
-      <figure class="ph ph--full block__img ratio-11"><img draggable="false" src="img/408x408_Artboard%204.jpg" alt="Amber LED chamber beside a red reflector, close-up"><span class="dim">408 × 408 px</span></figure>
-    </article>
-
-    <article class="block block--wide-l reveal">
-      <figure class="ph ph--full block__img ratio-wide"><img draggable="false" src="img/731x332_Artboard%204.jpg" alt="Red and white six-function rear lamp"><span class="dim">731 × 332 px</span></figure>
-      <div class="block__text text-r">
-        <p class="desc"><b>2 — RFL-04 Atlas</b><span>Six-function rear lamp: tail, stop, indicator, fog and reverse, with reflector panels at both ends. Red and white lenses in one sealed housing.</span></p>
-        <p class="cap">RFL-04<br>Atlas</p>
-      </div>
-    </article>
-
-    <article class="block block--corner-r reveal">
-      <span class="corner corner--tr" aria-hidden="true"><i class="plus"></i></span>
-      <figure class="ph ph--full block__img ratio-34"><img draggable="false" src="img/408x543_Artboard%204.jpg" alt="Red and amber LED lamps stacked, amber LEDs laid out as an arrow"><span class="dim">408 × 543 px</span></figure>
-      <div class="block__text text-r">
-        <p class="desc"><b>3 — RFL-05 Arrow</b><span>Two LED lamps stacked: red tail and stop above, amber indicator below, its LEDs laid out as an arrow pointing the way.</span></p>
-        <p class="cap">RFL-05<br>Arrow</p>
-      </div>
-    </article>
-
-    <article class="block block--wide-r reveal">
-      <div class="block__text text-l">
-        <p class="desc"><b>4 — RFL-06 Arc</b><span>Red rear lamp with a white reverse lens cut on the diagonal. Fine horizontal ribs spread the red light, while the white field stays clear.</span></p>
-        <p class="cap">RFL-06<br>Arc</p>
-      </div>
-      <figure class="ph ph--full block__img ratio-wide"><img draggable="false" src="img/838x381_Artboard%201%20-%20noise.jpg" alt="Red rear lamp with a white diagonal reverse lens"><span class="dim">838 × 381 px</span></figure>
-    </article>
-
-    <div class="table reveal">
-      <table class="contract mono">
-        <caption>Reflector index — chapter 02</caption>
-        <tr><th>Model</th><td>Type</td><td>Colour / Use</td></tr>
-        <tr><th></th><td>Form</td><td>Class</td></tr>
-        <tr class="gap"><th>1 — RFL-03 Ember</th><td>Combination lamp, LED indicator beside a reflector panel</td><td>Amber / red — rear</td></tr>
-        <tr><th>2 — RFL-04 Atlas</th><td>Combination lamp, 6 functions, reflectors at both ends</td><td>Red / white — rear, reverse, fog</td></tr>
-        <tr><th>3 — RFL-05 Arrow</th><td>LED lamp pair, arrow-shaped indicator</td><td>Red / amber — tail, stop, indicator</td></tr>
-        <tr><th>4 — RFL-06 Arc</th><td>Combination lamp, diagonal reverse lens</td><td>Red / white — rear, reverse</td></tr>
-      </table>
-    </div>
-
-    <!-- second lead strip, same frame as the top one -->
-    <div class="strip reveal">
-      <figure class="lead"><img draggable="false" src="img/Artboard%203.jpg" alt="RFL-12 Ridge, five-chamber rear lamp: amber, red and white lenses with ribbed covers"><span class="dim">1269 × 423 px</span></figure>
-      <div class="strip__text">
-        <p class="cap">RFL-12<br>Ridge</p>
-        <p class="desc"><b>1 — RFL-12 Ridge</b><span>Five-chamber rear lamp: amber indicator, red tail and stop, a red reflector in the middle and a white reverse light, all under ribbed lenses that spread the light sideways.</span></p>
-      </div>
-    </div>
-
-    <!-- gallery -->
-    <article class="gallery reveal">
-      <figure class="ph ph--full g1 ratio-11"><img draggable="false" src="img/192x192_Artboard%205.jpg" alt="Red reflector with moulded lettering"><span class="dim">192 × 192 px</span></figure>
-      <p class="cap g1c">RFL-07<br>Mark</p>
-      <p class="cap g0c">RFL-10<br>Flare</p>
-      <figure class="ph ph--full g2 ratio-11"><img draggable="false" src="img/408x408_Artboard%206.jpg" alt="Chrome headlamp with halogen bulb and LED daytime strip"><span class="dim">408 × 408 px</span></figure>
-      <p class="cap g2c">RFL-02<br>Halo</p>
-      <figure class="ph ph--full g3 ratio-11"><img draggable="false" src="img/408x408_Artboard%205.jpg" alt="Black and white headlamp with a lit LED bar"><span class="dim">408 × 408 px</span></figure>
-      <p class="cap g3c">RFL-09<br>Mono</p>
-      <figure class="ph ph--full g4 ratio-34"><img draggable="false" src="img/408x543_Artboard%203.jpg" alt="Amber LED lamp, round lenses lit"><span class="dim">408 × 543 px</span></figure>
-      <ol class="legend">
-        <li><b>2 — RFL-07 Mark</b><span>Red reflector with approval marks moulded into the lens.</span></li>
-        <li><b>3 — RFL-02 Halo</b><span>Chrome headlamp: a halogen bulb in a faceted reflector, with a row of LED daytime lights along the bottom.</span></li>
-        <li><b>4 — RFL-09 Mono</b><span>Headlamp in black and white, one LED bar across a faceted reflector.</span></li>
-        <li><b>5 — RFL-10 Flare</b><span>Amber LED lamp, fifteen round lenses lit at once.</span></li>
-        <li><b>6 — RFL-11 Grid</b><span>Lamp interior in black and white: the frame and optics behind the lens.</span></li>
-      </ol>
-      <p class="cap g5c">RFL-11<br>Grid</p>
-      <figure class="ph ph--full g5 ratio-11"><img draggable="false" src="img/192x192_Artboard%206.jpg" alt="Black and white lamp interior, close-up"><span class="dim">192 × 192 px</span></figure>
-    </article>
-
-    <div class="table reveal">
-      <table class="contract mono">
-        <caption>Reflector index — chapter 03</caption>
-        <tr><th>Model</th><td>Type</td><td>Colour / Use</td></tr>
-        <tr><th></th><td>Form</td><td>Class</td></tr>
-        <tr class="gap"><th>1 — RFL-12 Ridge</th><td>Combination lamp, 5 chambers, ribbed lenses</td><td>Amber / red / white — rear</td></tr>
-        <tr><th>2 — RFL-07 Mark</th><td>Reflector with moulded approval marks</td><td>Red — rear</td></tr>
-        <tr><th>3 — RFL-02 Halo</th><td>Halogen headlamp, LED daytime strip</td><td>White — front</td></tr>
-        <tr><th>4 — RFL-09 Mono</th><td>LED headlamp, faceted reflector</td><td>White — front</td></tr>
-        <tr><th>5 — RFL-10 Flare</th><td>LED lamp, 15 round lenses</td><td>Amber — indicator</td></tr>
-        <tr><th>6 — RFL-11 Grid</th><td>Lamp optic, interior frame</td><td>White — front</td></tr>
-      </table>
-    </div>
-
-    <!-- closing strip: auto slideshow of the Artboard photos -->
-    <div class="strip reveal">
-      <figure class="lead slides" aria-roledescription="carousel" aria-label="Reflector details, changes every few seconds">
-        <img class="slide is-on" draggable="false" src="img/Artboard%201.jpg" alt="Reflector detail 1 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%202.jpg" alt="Reflector detail 2 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%203.jpg" alt="Reflector detail 3 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%204.jpg" alt="Reflector detail 4 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%205.jpg" alt="Reflector detail 5 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%206.jpg" alt="Reflector detail 6 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%207.jpg" alt="Reflector detail 7 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%209.jpg" alt="Reflector detail 8 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%2010.jpg" alt="Reflector detail 9 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%2011.jpg" alt="Reflector detail 10 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%2012.jpg" alt="Reflector detail 11 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%2013.jpg" alt="Reflector detail 12 of 13">
-        <img class="slide" draggable="false" loading="lazy" src="img/Artboard%2016.jpg" alt="Reflector detail 13 of 13">
-        <span class="slides__no">01 / 13</span>
-        <span class="dim">1269 × 423 px</span>
-      </figure>
-    </div>
-
-  </section>
+      <a class="go" href="https://foianu.github.io/Reflectors/">Site ↗</a>
+      <a class="go" href="https://github.com/Foianu/Foianu.github.io/tree/main/Reflectors">Code ↗</a>
+    </li>
+  </ol>
 </main>
 
-<script src="js/main.js"></script>
 </body>
 </html>
