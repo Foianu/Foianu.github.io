@@ -1,0 +1,328 @@
+/* ===== Culori și font ===== */
+:root {
+  --bg: #f5f5f5;
+  --ink: #6f5f54;
+  --line: #6f5f54;
+  --red: #e0261b;
+  --row-active: #ffffff;
+  --placeholder: #e6e2de;
+  --grid-line: #6b6b6b;   /* liniile din Index */
+  --grid-empty: #d6d6d6;  /* pătratele fără poză încă încărcată */
+  --side: 260px;          /* lățimea coloanei din stânga */
+  --top: 56px;            /* înălțimea barei de sus */
+  --top-gap: 28px;        /* spațiul dintre bara de sus și planetă/listă */
+  --side-gap: 220px;      /* coloana 2: lățimea spațiului gol dintre planetă și listă */
+  --gutter: 20px;
+  --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.45 var(--font);
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+body { padding-top: calc(var(--top) + var(--top-gap)); }
+
+/* ===== Bara de sus: + Archive (stânga) — 20 projects (dreapta) ===== */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--top);
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--gutter);
+  background: var(--bg);
+}
+.brand { letter-spacing: 0.04em; }
+
+/* Cele 3 coloane:  1 = planeta + meniu (--side)
+                    2 = spațiu gol (--side-gap)
+                    3 = lista                                  */
+.spacer {
+  position: fixed;
+  top: calc(var(--top) + var(--top-gap));
+  bottom: 0;
+  left: var(--side);
+  width: var(--side-gap);
+}
+
+/* ===== Coloana fixă din stânga ===== */
+.side {
+  position: fixed;
+  top: calc(var(--top) + var(--top-gap)); left: 0; bottom: 0;
+  width: var(--side);
+  z-index: 40;
+  padding: 10px var(--gutter) 26px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.sphere {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  margin-top: auto;      /* planeta stă jos, deasupra meniului */
+}
+.menu { display: flex; flex-direction: column; gap: 4px; margin-top: 20px; }
+.menu a { opacity: 0.5; transition: opacity .2s; width: max-content; }
+.menu a:hover,
+.menu a.is-current { opacity: 1; }
+.menu a.is-current::before { content: "— "; }
+.count { opacity: 0.5; }
+
+/* ===== Preview la hover ===== */
+.preview {
+  position: fixed;
+  left: var(--gutter);
+  width: calc(var(--side) - 2 * var(--gutter));
+  z-index: 45;
+  background-color: var(--placeholder);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s;
+}
+.preview.is-on { opacity: 1; }
+
+/* ===== Panou About (glisează din stânga, lângă meniu) ===== */
+.panel {
+  position: fixed;
+  top: var(--top); bottom: 0; right: 0;
+  left: calc(var(--side) + var(--side-gap));
+  z-index: 35;
+  background: var(--bg);
+  border-left: 1px solid var(--line);
+  transform: translateX(-102%);
+  visibility: hidden;
+  transition: transform .45s cubic-bezier(.7,0,.2,1), visibility 0s .45s;
+  overflow-y: auto;
+}
+.panel.is-open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform .45s cubic-bezier(.7,0,.2,1);
+}
+.panel-inner { position: relative; max-width: 760px; padding: 10px var(--gutter) 60px; }
+.panel-close {
+  position: fixed;
+  top: calc(var(--top) + 16px);
+  right: var(--gutter);
+  font: 300 30px/1 var(--font);
+}
+.panel-section { display: none; }
+.panel-section.is-visible { display: block; }
+.panel h2 {
+  font-weight: 400;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 36px;
+}
+.panel p { margin-bottom: 1em; max-width: 60ch; }
+.panel .lead { font-size: 26px; line-height: 1.3; }
+.panel a { border-bottom: 1px solid currentColor; }
+/* linkul tablou.tech: pe fundal alb, care dispare la hover */
+.panel a.ext-link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 8px;
+  background: #fff;
+  border: 0;
+  transition: background .2s;
+}
+.panel a.ext-link:hover { background: transparent; }
+
+/* ===== Tabel ===== */
+main { margin-left: calc(var(--side) + var(--side-gap)); padding: 0 var(--gutter) 80px 0; }
+
+.row {
+  display: grid;
+  grid-template-columns: 2.4fr 2.2fr 1.4fr 0.9fr 1.6fr;
+  column-gap: 16px;
+}
+.row > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.head {
+  position: sticky;
+  top: var(--top);
+  z-index: 20;
+  padding: 10px 0 4px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: default;
+}
+
+/* ===== Rândurile proiectelor ===== */
+.list { list-style: none; margin-top: 4px; }
+.item > .row { cursor: pointer; padding: 1px 0; }
+.item > .row:hover {
+  box-shadow: inset 0 0 0 1px #000;   /* doar chenar subțire negru la hover */
+}
+/* puțin spațiu în interior, ca textul să nu atingă chenarul */
+.head, .item > .row { padding-left: 6px; padding-right: 6px; }
+.item.is-open > .row { background: var(--row-active); position: sticky; top: calc(var(--top) + 36px); z-index: 10; }
+
+.title { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.title > .name { overflow: hidden; text-overflow: ellipsis; }
+/* triunghiul roșu de după titlu */
+.arrow {
+  flex: none;
+  width: 0; height: 0;
+  padding: 0;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent var(--red);
+  transform: rotate(-90deg);          /* închis: vârful în sus */
+  transition: transform .25s;
+}
+.item.is-open .arrow { transform: rotate(90deg); }   /* deschis: vârful în jos */
+
+/* Imaginile proiectului deschis (apar sub rândul lui) */
+/* proiectul deschis (rând + slide + text) stă pe fundal alb */
+.item.is-open { background: var(--row-active); margin: 4px 0; }
+.item-body { display: none; padding: 0 0 50px; }
+.item.is-open .item-body { display: block; }
+
+/* Slide cu poze: click în dreapta = următoarea, în stânga = anterioara */
+.slider {
+  position: relative;
+  width: 100%;
+  /* cadru fix: încap întregi și pozele orizontale, și cele verticale */
+  /* lățimea = bara de titluri; înălțimea după poză, dar nu mai mare decât ecranul */
+  aspect-ratio: var(--r, 1.5);
+  max-height: calc(100vh - 140px);
+  cursor: e-resize;
+}
+.slider .media {
+  background-color: transparent;
+  background-size: contain;          /* poza întreagă, fără tăieturi */
+  background-position: center;        /* pozele verticale stau centrate */
+}
+.slider.on-left { cursor: w-resize; }
+.slider .media {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity .35s;
+}
+.slider .media.is-active { opacity: 1; }
+.slide-count { margin: 6px 0 20px; }
+
+/* ===== Index: grid cu toate pozele ===== */
+.grid {
+  --cols: 4;                         /* câte poze pe rând */
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 1px;                          /* liniile subțiri dintre pătrate */
+  background: var(--grid-line);
+  border: 1px solid var(--grid-line);
+  margin-top: 10px;
+}
+.grid[hidden], #listView[hidden] { display: none; }
+.tile {
+  position: relative;
+  aspect-ratio: 1;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: var(--grid-empty);
+  background-size: cover;
+  background-position: center;
+}
+.tile::after { content: ""; position: absolute; inset: 0; }   /* strat de protecție */
+.tile-label {
+  position: absolute;
+  left: 8px; bottom: 6px;
+  z-index: 1;
+  padding: 1px 5px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity .2s;
+}
+.tile:hover .tile-label { opacity: 1; }
+.tile:hover { box-shadow: inset 0 0 0 1px #000; }
+.tile.is-missing::before { content: none; }
+
+.media {
+  position: relative;
+  width: 100%;
+  background-color: var(--placeholder);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+}
+/* strat transparent peste imagine */
+.media::after { content: ""; position: absolute; inset: 0; }
+.media.is-missing::before {
+  content: attr(data-src);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.5;
+}
+.slider .media.is-missing { background-color: var(--placeholder); }
+
+.item-info {
+  display: grid;
+  grid-template-columns: 4.6fr 3.9fr;
+  column-gap: 16px;
+}
+.item-text p { margin-bottom: 1em; max-width: 62ch; }
+
+/* ===== Protecție imagini ===== */
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+.panel p, .item-text { -webkit-user-select: text; user-select: text; }
+
+@media print {
+  .media, .preview { display: none !important; }
+  body::before { content: "Printing is disabled."; }
+}
+
+/* ===== Mobil: meniul devine bară sus, fără preview ===== */
+@media (max-width: 760px) {
+  :root { --gutter: 16px; --top: 48px; --top-gap: 0px; }
+  .side {
+    position: static;
+    width: auto;
+    flex-direction: row;
+    padding: 0 var(--gutter) 8px;
+  }
+  .menu { flex-direction: row; gap: 14px; margin-top: 0; }
+  .preview, .sphere, .spacer { display: none; }
+  main { margin-left: 0; padding-left: var(--gutter); }
+  .row { grid-template-columns: 1fr 52px; }
+  .grid { --cols: 2; }
+  .row > span:nth-child(2),
+  .row > span:nth-child(3),
+  .row > span:nth-child(5) { display: none; }
+  .item-info { grid-template-columns: 1fr; }
+  .panel { left: 0; border-left: 0; }
+  .panel .lead { font-size: 21px; }
+}
+

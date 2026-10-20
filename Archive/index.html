@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>+ Archive</title>
+  <meta name="robots" content="noimageindex">
+  <!-- Iconița din tab: o desenează js/sphere.js; acesta e doar fișierul de rezervă -->
+  <link rel="icon" href="img/brand/favicon.png">
+  <link rel="stylesheet" href="css/styles.css?v=23">
+</head>
+<body>
+
+  <!-- ===== BARA DE SUS (pe toată lățimea) ===== -->
+  <header class="topbar">
+    <a class="brand" href="#" data-nav="nav-1">+ Archive</a>
+    <span class="count" id="count"></span>
+  </header>
+
+  <!-- ===== MENIU (coloana fixă din stânga) ===== -->
+  <aside class="side">
+    <!-- Sus în coloană apare preview-ul de la hover; planeta stă jos, deasupra meniului -->
+    <!-- Animația: sfera din js/sphere.js -->
+    <canvas class="sphere" id="sphere" aria-hidden="true"></canvas>
+    <!-- Meniu: textul dintre <a>...</a> îl poți schimba liber.
+         nav-1 = lista, nav-2 = gridul cu poze, nav-3 = panoul cu text -->
+    <nav class="menu" aria-label="Meniu principal">
+      <a href="#" data-nav="nav-1" class="is-current">List</a>
+      <a href="#nav-2" data-nav="nav-2">Gallery</a>
+      <a href="#nav-3" data-nav="nav-3">Story</a>
+    </nav>
+  </aside>
+
+  <!-- Coloana 2: spațiul gol dintre planetă și listă (lățimea: --side-gap în styles.css) -->
+  <div class="spacer" aria-hidden="true"></div>
+
+  <!-- Preview la hover (miniatura apare în coloana din stânga) -->
+  <div class="preview" id="preview" aria-hidden="true"></div>
+
+  <!-- Panou About -->
+  <div class="panel" id="panel" aria-hidden="true">
+    <div class="panel-inner">
+      <button class="panel-close" id="panelClose" aria-label="Închide">×</button>
+
+      <section class="panel-section" data-panel="nav-3">
+        <h2>Story</h2>
+        <p class="lead">#Texture Mining</p>
+        <p>Texture Mining began with a simple act: looking closer. Surfaces met in everyday life — some found by chance, others searched for — were explored, photographed and then edited until their hidden patterns came forward.</p>
+        <p>Neither purely documentary nor fully abstract, the images form a study of how much can live inside a single surface.</p>
+        <p>The collection lives on as Postcards and Bookmarks:</p>
+        <p><a class="ext-link" href="https://tablou.tech" target="_blank" rel="noopener"><i>#tablou.tech</i></a></p>
+      </section>
+    </div>
+  </div>
+
+  <main>
+    <!-- ===== INDEX: toate pozele într-un grid ===== -->
+    <section class="grid" id="grid" hidden></section>
+
+    <!-- ===== ARCHIVE: lista ===== -->
+    <div id="listView">
+    <!-- Capul de tabel: schimbă aici denumirile coloanelor -->
+    <div class="row head">
+      <span>Title</span>
+      <span>Material</span>
+      <span>Number</span>
+      <span>Year</span>
+      <span>Type</span>
+    </div>
+
+    <!-- Lista -->
+    <ol class="list" id="list"></ol>
+    </div>
+  </main>
+
+  <script src="js/data.js?v=23"></script>
+  <script src="js/main.js?v=23"></script>
+  <script src="js/sphere.js?v=23"></script>
+</body>
+</html>
